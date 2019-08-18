@@ -69,4 +69,4 @@ function articleCreator() {
     return cardDiv
 }
 
-// console.log(articleCreator())
+console.log(articleCreator())
