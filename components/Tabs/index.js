@@ -8,30 +8,26 @@
 //  The tab component should look like this:
 //    <div class="tab">topic here</div>
 
-axios.get('https://lambda-times-backend.herokuapp.com/topics') //get call to the server to get data.
-    .then(function (response) { //turning the response into an array we can work with.                       
-        const infoArray = response.data.topics;
-        console.log(infoArray) //checking to make sure I have the right data.
+let topics = document.querySelector('.topics');
 
-        const topicDiv = document.querySelector('.topics')
-        console.log(topicDiv)
+axios.get('https://lambda-times-backend.herokuapp.com/topics')
+  .then((response) => {
+    topicsArray = response.data.topics;
+    topicsArray.forEach((item) => topics.appendChild(Tabs(item)));
+  })
+  .catch((error) => {
+    console.log('topicsArray', error);
+  })
 
-        infoArray.forEach((e) => {
-            topicDiv.appendChild(topicsCards(e))
-        })
+function Tabs(data) {
+  // Creating the element
+  const tab = document.createElement('div');
 
-        // We want to create a new div element for each topic and append that to the tabs span.
+  // Adding classes
+  tab.classList.add('tab');
 
-        return infoArray;
-    })
-    .catch(function (error) {
-        console.log(error);
-    })
+  // Adding textContent
+  tab.textContent = data;
 
-
-function topicsCards(Topics) {
-    const topic = document.createElement('div')
-    topic.classList.add('tab')
-    topic.textContent = Topics
-    return topic;
+  return tab;
 }

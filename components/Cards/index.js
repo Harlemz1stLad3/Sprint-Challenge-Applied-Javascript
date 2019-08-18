@@ -18,55 +18,80 @@
 //
 // Create a card for each of the articles and add the card to the DOM.
 
-function ArticleMap(Topics) {
-    Topics.map(headlines => {
-            axios.get('https://lambda-times-backend.herokuapp.com/articles') //get call to the server to get data.
-                .then(function (response) { //turning the response into an array we can work with.                       
-                    const articleArray = response.data.articles;
-                    const newCard = Array.from(articleArray)
-                    console.log(newCard)
+let cardsContainer = document.querySelector('.cards-container');
 
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-        }
+axios.get('https://lambda-times-backend.herokuapp.com/articles')
+  .then((response) => {
+    javascriptArray = response.data.articles.javascript;
+    javascriptArray.forEach((item) => cardsContainer.appendChild(Cards(item)));
+  })
+  .catch((error) => {
+    console.log('javascript', error);
+  })
 
-    )
+  axios.get('https://lambda-times-backend.herokuapp.com/articles')  
+  .then((response) => {
+    bootstrapArray = response.data.articles.bootstrap;
+    bootstrapArray.forEach((item) => cardsContainer.appendChild(Cards(item)));
+  })
+  .catch((error) => {
+    console.log('bootstrap', error);
+  })
+
+  axios.get('https://lambda-times-backend.herokuapp.com/articles')
+  .then((response) => {
+    technologyArray = response.data.articles.technology;
+    technologyArray.forEach((item) => cardsContainer.appendChild(Cards(item)));
+  })
+  .catch((error) => {
+    console.log('technology', error);
+  })
+
+  axios.get('https://lambda-times-backend.herokuapp.com/articles')
+  .then((response) => {
+    jqueryArray = response.data.articles.jquery;
+    jqueryArray.forEach((item) => cardsContainer.appendChild(Cards(item)));
+  })
+  .catch((error) => {
+    console.log('jquery', error);
+  })
+
+  axios.get('https://lambda-times-backend.herokuapp.com/articles')
+  .then((response) => {
+    nodeArray = response.data.articles.node;
+    nodeArray.forEach((item) => cardsContainer.appendChild(Cards(item)));
+  })
+  .catch((error) => {
+    console.log('node', error);
+  })
+
+function Cards(data) {
+  // Creating the elements
+  const card = document.createElement('div');
+  const headline = document.createElement('div');
+  const author = document.createElement('div');
+  const imageContainer = document.createElement('div');
+  const image = document.createElement('img');
+  const byAuthor = document.createElement('span');
+
+  // Adding classes to elements
+  card.classList.add('card');
+  headline.classList.add('headline');
+  author.classList.add('author');
+  imageContainer.classList.add('img-container');
+
+  // Appending the elements
+  card.appendChild(headline);
+  card.appendChild(author);
+  author.appendChild(imageContainer);
+  imageContainer.appendChild(image);
+  author.appendChild(byAuthor);
+
+  // Adding textContent
+  headline.textContent = data.headline;
+  image.src = data.authorPhoto;
+  image.textContent = data.image;
+  byAuthor.textContent = data.authorName;
+
+  return card;
 }
-const cardsContainer = document.querySelector('.cards-container')
-
-function ArticleMap(Topics) {
-    Topics.map(headlines => {
-
-    })
-}
-
-
-//This is the component creator.
-function articleCreator() {
-
-    const cardDiv = document.createElement('div')
-    const headlineDiv = document.createElement('div')
-    const authorDiv = document.createElement('div')
-    const imageContainer = document.createElement('div')
-    const authorHeadshot = document.createElement('img')
-    const authorSpan = document.createElement('span')
-
-    cardDiv.classList.add('card')
-    headlineDiv.classList.add('headline')
-    authorDiv.classList.add('author')
-    imageContainer.classList.add('img-container')
-    authorHeadshot.setAttribute('src', `${authorPhoto}`)
-    authorSpan.textContent = `By ${authorName}`
-
-    cardDiv.append(headlineDiv)
-    cardDiv.append(authorDiv)
-    authorDiv.append(imageContainer)
-    imageContainer.append(authorHeadshot)
-    authorDiv.append(authorSpan)
-
-    return cardDiv
-}
-
-console.log(articleCreator())
