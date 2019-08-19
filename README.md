@@ -30,11 +30,17 @@ Edit this document to include your answers after each question. Make sure to lea
 
 1. What is the DOM?
 
-DOM stands for Document Object Model. Given that everything in Javascript is an object, the DOM creates a model of the HTML which we can then dynamically manipulate. This is not the same as the actual HTML. Making dynamic changes to the DOM will not affect the HTML on the index.html page.
+Document Object Model is an object representation of the html elements of a webpage. It gives us an interface that with which we can interact with and manipulate the page, changing document structure, content, and styling.
+
+ This is not the same as the actual HTML. Making dynamic changes to the DOM will not affect the HTML on the index.html page.
 
 DOM is the document object that script languages like Javascript are able to manipulate to make a website more functional.
 
 2. What is an event?
+
+Events are the way we users interact with the page. Any time there is some interaction by way of a mouse, keyboard, etc., the DOM creates and propagates an event object. 
+
+This event object carries information about the event so that it may be handled at any point up the tree from the point of origin.
 
 An event refers to a number of interactions with the page. It could indicate when the page has loaded (i.e. the load event), a user has clicked or double clicked on something (click and dblclick respectively), etc. It could be called a "thing" that happens to an HTML element.
 
@@ -42,7 +48,9 @@ An event is pretty much any interaction with the DOM itself and comes in a varie
 
 3. What is an event listener?
 
-An event listener is a method which is attached to an HTML element which "listens" for an event to occur. An HTML button on the page could have an event listener with the property of 'click' assigned to it. When a user clicks on that button, it will refer to a callback function to do something on the page.
+An event listener is a method which is attached to an HTML element which "listens" for an event to occur. An HTML button on the page could have an event listener with the property of 'click' assigned to it. 
+
+When a user clicks on that button, it will refer to a callback function to do something on the page.
 
 An eventListener is a way for Javascript to interact with all the DOM events and create an action based on user interaction (mouseover, click, keydown, etc...).
 
